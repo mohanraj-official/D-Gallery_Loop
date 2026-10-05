@@ -1,0 +1,9 @@
+@media (prefers-reduced-motion: no-preference) {
+  .hero__veil { animation: slowFloat 16s ease-in-out infinite alternate; }
+  .hero__line { animation: linePulse 2.4s ease-in-out infinite; }
+  .feature-card, .memory-card, .masonry-card { will-change: transform; }
+  .feature-card { transition: transform .7s var(--ease), border-color .3s ease; }
+  .feature-card:hover { transform: translateY(-4px); border-color: var(--line-strong); }
+}
+@keyframes slowFloat { from { transform: translate3d(0,0,0) rotate(12deg); } to { transform: translate3d(-3vw,2vh,0) rotate(18deg); } }
+@keyframes linePulse { 0%,100% { opacity: .35; transform: scaleY(.7); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); transform-origin: top; } }

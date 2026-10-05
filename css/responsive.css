@@ -1,0 +1,39 @@
+@media (max-width: 900px) {
+  .topnav { display: none; }
+  .section { width: min(92vw, 720px); padding: 16vw 0; }
+  .section--tight { padding: 12vw 0; }
+  .hero { padding: 100px 5vw 10vh; min-height: 94svh; }
+  .hero__scroll-hint { display: none; }
+  .manifesto__grid, .timeline { grid-template-columns: 1fr; gap: 30px; }
+  .timeline__intro { position: static; }
+  .feature-card { min-height: 560px; }
+  .feature-card__overlay { left: 22px; right: 22px; bottom: 22px; }
+  .memory-card, .memory-card:nth-child(2), .memory-card:nth-child(5) { grid-column: span 12; min-height: 420px; }
+  .section__head { align-items: start; flex-direction: column; }
+  .chip-row { justify-content: flex-start; }
+  .archive__hero, .cta__inner { flex-direction: column; align-items: start; }
+  .archive__stats { width: 100%; justify-content: space-between; }
+  .masonry { columns: 2 180px; }
+  .field-row { flex-direction: column; }
+  .modal h2 { font-size: 42px; }
+  .story__media-item, .story__media-item:nth-child(1), .story__media-item:nth-child(6) { grid-column: span 12; }
+}
+@media (max-width: 560px) {
+  .topbar { height: 68px; padding: 0 5vw; }
+  .brand__word { font-size: 10px; }
+  h1 { font-size: 58px; }
+  .hero__copy { font-size: 14px; }
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { justify-content: center; }
+  .feature-card { min-height: 470px; }
+  .feature-card__title { font-size: 36px; }
+  .masonry { columns: 1; }
+  .timeline-item { grid-template-columns: 72px 1fr; gap: 16px; }
+  .timeline-item__title { font-size: 26px; }
+  .archive__stats { gap: 12px; }
+  .stat strong { font-size: 25px; }
+  .stat span { font-size: 8px; }
+  .modal { padding: 8px; }
+  .modal__panel { padding: 22px; border-radius: 22px; }
+  .modal__panel--memory { padding: 0; }
+}

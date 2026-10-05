@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0b0f" />
+  <meta name="description" content="A private, cinematic personal memories gallery backed by Google Drive." />
+  <title>MEMORIES / A private visual archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <div id="noise" aria-hidden="true"></div>
+  <div class="ambient ambient--one" aria-hidden="true"></div>
+  <div class="ambient ambient--two" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#home" aria-label="Memories home">
+      <span class="brand__mark"></span>
+      <span class="brand__word">MEMORIES</span>
+    </a>
+    <nav class="topnav" aria-label="Primary navigation">
+      <a href="#memories">Memories</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#explore">Explore</a>
+    </nav>
+    <div class="topbar__actions">
+      <button class="icon-btn" id="searchOpen" aria-label="Open search">⌕</button>
+      <button class="avatar-btn" id="settingsOpen" aria-label="Open settings">MS</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero hero--home" aria-labelledby="homeTitle">
+      <div class="hero__veil"></div>
+      <div class="hero__content reveal">
+        <p class="eyebrow">PRIVATE VISUAL ARCHIVE · 001</p>
+        <h1 id="homeTitle">Your life,<br><em>in motion.</em></h1>
+        <p class="hero__copy">A living memory world for the photographs, videos and sounds you never want to lose.</p>
+        <div class="hero__actions">
+          <button class="btn btn--primary" id="buildMemoryBtn">Build from Drive <span>↗</span></button>
+          <button class="btn btn--quiet" id="demoBtn">Explore demo</button>
+        </div>
+        <div class="hero__status">
+          <span class="status-dot"></span>
+          <span id="connectionStatus">Drive not connected</span>
+        </div>
+      </div>
+      <div class="hero__scroll-hint"><span>Scroll to wander</span><span class="hero__line"></span></div>
+    </section>
+
+    <section class="manifesto section section--tight reveal" id="memories">
+      <div class="section__kicker">THE IDEA</div>
+      <div class="manifesto__grid">
+        <p class="display-copy">Not a folder.<br><span>A memory.</span></p>
+        <div class="manifesto__text">
+          <p>Drop a Drive folder into this world. The gallery finds the rhythm between portraits, landscapes, video and sound, then gives the collection a visual shape.</p>
+          <p class="muted">You keep the originals in Google Drive. This site becomes the experience around them.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured section reveal" id="featuredSection">
+      <div class="section__head">
+        <div>
+          <div class="section__kicker">FEATURED MEMORY</div>
+          <h2 id="featuredTitle">Kurinjal / The long way up</h2>
+        </div>
+        <button class="text-btn" id="openFeatured">Enter memory <span>↗</span></button>
+      </div>
+      <article class="feature-card" id="featuredCard"></article>
+    </section>
+
+    <section class="memories-grid section section--tight reveal" id="explore">
+      <div class="section__head">
+        <div>
+          <div class="section__kicker">EXPLORE</div>
+          <h2>Everything becomes a memory.</h2>
+        </div>
+        <div class="chip-row" id="categoryChips"></div>
+      </div>
+      <div class="memory-grid" id="memoryGrid"></div>
+    </section>
+
+    <section class="timeline section reveal" id="timeline">
+      <div class="timeline__intro">
+        <div class="section__kicker">YOUR TIMELINE</div>
+        <h2>The years that<br><em>became stories.</em></h2>
+      </div>
+      <div class="timeline__list" id="timelineList"></div>
+    </section>
+
+    <section class="archive section reveal">
+      <div class="archive__hero">
+        <div class="archive__copy">
+          <div class="section__kicker">THE ARCHIVE</div>
+          <h2>See the whole world<br>at once.</h2>
+          <p>Photos, videos and audio from your Drive, arranged as one evolving archive.</p>
+        </div>
+        <div class="archive__stats" id="archiveStats"></div>
+      </div>
+      <div class="masonry" id="archiveMasonry"></div>
+    </section>
+
+    <section class="cta section reveal">
+      <div class="cta__inner">
+        <div>
+          <div class="section__kicker">READY WHEN YOU ARE</div>
+          <h2>Bring your memories<br><em>into the room.</em></h2>
+        </div>
+        <button class="btn btn--primary btn--large" id="ctaBuildBtn">Connect Google Drive <span>↗</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer section">
+    <div>MEMORIES · PRIVATE BY DESIGN</div>
+    <div id="footerMeta">Static GitHub Pages build</div>
+  </footer>
+
+  <div class="modal" id="driveModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="driveModalTitle">
+    <div class="modal__scrim" data-close="driveModal"></div>
+    <div class="modal__panel modal__panel--drive">
+      <button class="modal__close" data-close="driveModal" aria-label="Close">×</button>
+      <div class="section__kicker">PRIVATE DRIVE IMPORT</div>
+      <h2 id="driveModalTitle">Turn a folder into a memory.</h2>
+      <p class="muted">Authenticate with Google, paste a Drive folder URL, and the gallery will scan the folder and its subfolders.</p>
+      <label class="field-label" for="folderUrl">Google Drive folder URL</label>
+      <div class="field-row">
+        <input id="folderUrl" class="text-input" type="url" inputmode="url" placeholder="https://drive.google.com/drive/folders/..." autocomplete="off">
+        <button class="btn btn--primary" id="connectDriveBtn">Connect</button>
+      </div>
+      <div class="setup-note" id="setupNote"></div>
+      <div class="progress-wrap" id="importProgress" hidden>
+        <div class="progress-head"><span id="progressLabel">Preparing…</span><span id="progressCount">0%</span></div>
+        <div class="progress"><span id="progressBar"></span></div>
+      </div>
+      <div class="modal__foot">
+        <span class="status-dot"></span>
+        <span>Your originals remain in Google Drive.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="memoryModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="memoryModalTitle">
+    <div class="modal__scrim" data-close="memoryModal"></div>
+    <div class="modal__panel modal__panel--memory" id="memoryPanel">
+      <button class="modal__close" data-close="memoryModal" aria-label="Close">×</button>
+      <div id="memoryStory"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="searchModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
+    <div class="modal__scrim" data-close="searchModal"></div>
+    <div class="modal__panel modal__panel--search">
+      <button class="modal__close" data-close="searchModal" aria-label="Close">×</button>
+      <div class="section__kicker">SEARCH THE ARCHIVE</div>
+      <h2 id="searchModalTitle">Find a moment.</h2>
+      <input id="searchInput" class="search-input" type="search" placeholder="Try “friends”, “2026”, “video” or a filename…" autocomplete="off">
+      <div id="searchResults" class="search-results"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
